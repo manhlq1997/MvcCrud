@@ -25,19 +25,19 @@ namespace MVCCRUD.Models
         [Required(ErrorMessage = "Nhập số điện thoại")]
         [Display(Name = "Số điện thoại")]
         [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid Phone number")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Số điện thoại không hợp lệ")]
         public string Mobileno { get; set; }
 
         //DOB
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "Nhập ngày tháng năm sinh")]
         [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        [MVCCRUD.Models.CustomValidationAttributeDemo.ValidBirthDate(ErrorMessage = "Birth Date can not be greater than current date")]
+        [MVCCRUD.Models.CustomValidationAttributeDemo.ValidBirthDate(ErrorMessage = "Ngày sinh không thể là ngày muộn hơn ngày hiện tại")]
         public DateTime Birthdate { get; set; }
 
         //Email
         [Required(ErrorMessage = "Nhập EmailId")]
-        [RegularExpression(@"^[\w-\._\+%]+@(?:[\w-]+\.)+[\w]{2,6}$", ErrorMessage = "Please enter a valid email address")]
+        [RegularExpression(@"^[\w-\._\+%]+@(?:[\w-]+\.)+[\w]{2,6}$", ErrorMessage = "Xin hãy nhập địa chỉ email hợp lệ")]
         public string EmailID { get; set; }
 
         public List<Customer> ShowallCustomer { get; set; }

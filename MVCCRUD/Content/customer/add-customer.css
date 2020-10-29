@@ -1,0 +1,12 @@
+﻿.add-title {
+    background-color: cornflowerblue;
+    color: white;
+    height: 88px;
+    text-align: center;
+    padding-top: 26px;
+    font-size: 25px;
+}
+
+.container {
+    padding-top: 23px;
+}

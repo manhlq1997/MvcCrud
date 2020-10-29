@@ -10,34 +10,26 @@ namespace MVCCRUD.Controllers
 {
     public class CustomerController : Controller
     {
-        // GET: Customer
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-        //  
-        // GET: /Customer/  
         [HttpGet]
         public ActionResult InsertCustomer()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult InsertCustomer(Customer objCustomer)
         {
-
             objCustomer.Birthdate = Convert.ToDateTime(objCustomer.Birthdate);
             if (ModelState.IsValid) //checking model is valid or not  
             {
                 DataAccessLayer objDB = new DataAccessLayer();
                 string result = objDB.InsertData(objCustomer);
                 //ViewData["result"] = result;  
-                TempData["result1"] = result;
+                TempData["insert"] = result;
                 ModelState.Clear(); //clearing model  
                                     //return View();  
                 return RedirectToAction("ShowAllCustomerDetails");
             }
-
             else
             {
                 ModelState.AddModelError("", "Error in saving data");
@@ -53,6 +45,7 @@ namespace MVCCRUD.Controllers
             objCustomer.ShowallCustomer = objDB.Selectalldata();
             return View(objCustomer);
         }
+
         [HttpGet]
         public ActionResult Details(string ID)
         {
@@ -64,6 +57,7 @@ namespace MVCCRUD.Controllers
             DataAccessLayer objDB = new DataAccessLayer(); //calling class DBdata  
             return View(objDB.SelectDatabyID(ID));
         }
+
         [HttpGet]
         public ActionResult Edit(string ID)
         {
@@ -81,7 +75,7 @@ namespace MVCCRUD.Controllers
                 DataAccessLayer objDB = new DataAccessLayer(); //calling class DBdata  
                 string result = objDB.UpdateData(objCustomer);
                 //ViewData["result"] = result;  
-                TempData["result2"] = result;
+                TempData["update"] = result;
                 ModelState.Clear(); //clearing model  
                 //return View();  
                 return RedirectToAction("ShowAllCustomerDetails");
@@ -98,9 +92,8 @@ namespace MVCCRUD.Controllers
         {
             DataAccessLayer objDB = new DataAccessLayer();
             int result = objDB.DeleteData(ID);
-            TempData["result3"] = result;
+            TempData["delete"] = result;
             ModelState.Clear(); //clearing model  
-                                //return View();  
             return RedirectToAction("ShowAllCustomerDetails");
         }
     }

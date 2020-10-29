@@ -10,98 +10,105 @@
 </head>
 <body>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/customer/list-customer.css" rel="stylesheet" />
+    <div class="list-title">Danh Sách</div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-2">
+                <div style="color:Blue;font-family:Arial">
+                    @Html.ActionLink("List Customer", "ShowAllCustomerDetails")
+                    <br>
+                    @Html.ActionLink(linkText: "New Customer", actionName: "InsertCustomer", controllerName: "Customer")
+                </div>
+            </div>
+            <div class="col-sm-10">
+                <table class="table" align="center">
+                    <tr style="background-color:burlywood; color: black">
+                        <th scope="col" style="color:Black">
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th scope="col" style="color: Black">
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th scope="col" style="color: Black">
+                            @Html.DisplayNameFor(model => model.Mobileno)
+                        </th>
+                        <th scope="col" style="color: Black">
+                            @Html.DisplayNameFor(model => model.Birthdate)
+                        </th>
+                        <th scope="col" style="color: Black">
+                            @Html.DisplayNameFor(model => model.EmailID)
+                        </th>
+                        <th scope="col" style="color: black">
+                            Operation
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model.ShowallCustomer)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Mobileno)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Birthdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmailID)
+                            </td>
+                            <td>
+
+                                @Html.ActionLink("Modify", "Edit", new { id = item.CustomerID }) |
+
+                                @Html.ActionLink("Detail", "Details", new { id = item.CustomerID }) |
+                                @*@Html.ActionLink("Remove", "Delete", new { id = item.CustomerID })*@
+                                @Html.ActionLink("Remove", "Delete", new { id = item.CustomerID },
+                                new { onclick = "return confirm('Are sure wants to delete?');" })
+                            </td>
+                        </tr>
+
+                    }
+                </table>
+                @if (TempData["insert"] != null)
+                {
+                    <script type="text/javascript">
+                        alert("Record Is Inserted Successfully");
+                    </script>
+
+                }
+                @if (TempData["update"] != null)
+                {
+                    <script type="text/javascript">
+                        alert("Record Is Updated Successfully");
+                    </script>
+
+                }
+                @if (TempData["delete"] != null)
+                {
+                    <script type="text/javascript">
+                        alert("Record Is Deleted Successfully");
+                    </script>
+
+                }
+                <br />
+                <br />
+                <footer>
+                    <p style="text-align:center ; color:#808080">@DateTime.Now.ToLocalTime()</p> @*Add Date Time*@
+                </footer>
+            </div>
+        </div>
+
+
+    </div>
     <script src="~/Scripts/jquery-1.7.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <div class="container">
-        <h2 style="color:#808080; text-align: left;">CRUD App</h2>
-        @*<h2 style="text-align:center"></h2>*@
-        <p>
-            @*<p style="text-align:center">*@
-            @Html.ActionLink(linkText: "New Customer", actionName: "InsertCustomer", controllerName: "Customer")
-        </p>
-        <br />
-        <br />
-        <table class="table" align="center">
-            <tr>
-                <th scope="col" style="color:Black">
-                    @Html.DisplayNameFor(model => model.Name)
-
-                </th>
-                <th scope="col" style="color: Black">
-                    @Html.DisplayNameFor(model => model.Address)
-                </th>
-                <th scope="col" style="color: Black">
-                    @Html.DisplayNameFor(model => model.Mobileno)
-                </th>
-                <th scope="col" style="color: Black">
-                    @Html.DisplayNameFor(model => model.Birthdate)
-                </th>
-                <th scope="col" style="color: Black">
-                    @Html.DisplayNameFor(model => model.EmailID)
-                </th>
-                <th scope="col" style="color: black">
-                    Operation
-                </th>
-            </tr>
-
-            @foreach (var item in Model.ShowallCustomer)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Mobileno)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Birthdate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EmailID)
-                    </td>
-                    <td>
-
-                        @Html.ActionLink("Modify", "Edit", new { id = item.CustomerID }) |
-
-                        @Html.ActionLink("Detail", "Details", new { id = item.CustomerID }) |
-                        @*@Html.ActionLink("Remove", "Delete", new { id = item.CustomerID })*@
-                        @Html.ActionLink("Remove", "Delete", new { id = item.CustomerID },
-                        new { onclick = "return confirm('Are sure wants to delete?');" })
-                    </td>
-                </tr>
-
-            }
-        </table>
-        @if (TempData["result1"] != null)
-        {
-            <script type="text/javascript">
-                alert("Record Is Inserted Successfully");
-            </script>
-
-        }
-        @if (TempData["result2"] != null)
-        {
-            <script type="text/javascript">
-                alert("Record Is Updated Successfully");
-            </script>
-
-        }
-        @if (TempData["result3"] != null)
-        {
-            <script type="text/javascript">
-                alert("Record Is Deleted Successfully");
-            </script>
-
-        }
-        <br />
-        <br />
-        <footer>
-            <p style="text-align:center ; color:#808080">@DateTime.Now.ToLocalTime()</p> @*Add Date Time*@
-        </footer>
-    </div>
 </body>
 </html>  
