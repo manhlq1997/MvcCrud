@@ -9,11 +9,12 @@
     <title>ShowAllCustomerDetails</title>
 </head>
 <body>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.7.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <div style="font-family:Arial Black;">
-        <h2 style="background-color: Yellow;color: Blue; text-align: center; font-style: oblique">SATYAPRAKASH's MVC Customer CRUD Operation</h2>
+    <div class="container">
+        <h2 style="color:#808080; text-align: left;">CRUD App</h2>
         @*<h2 style="text-align:center"></h2>*@
         <p>
             @*<p style="text-align:center">*@
@@ -21,25 +22,25 @@
         </p>
         <br />
         <br />
-        <table border="1" align="center">
+        <table class="table" align="center">
             <tr>
-                <th style="background-color:Yellow;color:blue">
+                <th scope="col" style="color:Black">
                     @Html.DisplayNameFor(model => model.Name)
 
                 </th>
-                <th style="background-color: Yellow;color: blue">
+                <th scope="col" style="color: Black">
                     @Html.DisplayNameFor(model => model.Address)
                 </th>
-                <th style="background-color: Yellow;color: blue">
+                <th scope="col" style="color: Black">
                     @Html.DisplayNameFor(model => model.Mobileno)
                 </th>
-                <th style="background-color: Yellow;color: blue">
+                <th scope="col" style="color: Black">
                     @Html.DisplayNameFor(model => model.Birthdate)
                 </th>
-                <th style="background-color: Yellow;color: blue">
+                <th scope="col" style="color: Black">
                     @Html.DisplayNameFor(model => model.EmailID)
                 </th>
-                <th style="background-color: Yellow;color: blue">
+                <th scope="col" style="color: black">
                     Operation
                 </th>
             </tr>
@@ -99,7 +100,7 @@
         <br />
         <br />
         <footer>
-            <p style="background-color: Yellow;text-align:center ; color:blue">© @DateTime.Now.ToLocalTime()</p> @*Add Date Time*@
+            <p style="text-align:center ; color:#808080">@DateTime.Now.ToLocalTime()</p> @*Add Date Time*@
         </footer>
     </div>
 </body>
